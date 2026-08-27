@@ -52,8 +52,8 @@ from invenio_rest_api_client.models import (
     AccessRecord,
     Affiliation,
     AlternateIdentifier,
+    Contributor,
     CreateADraftRecordBody,
-    Created,
     Creator,
     Files,
     FileTransferItem,
@@ -63,11 +63,13 @@ from invenio_rest_api_client.models import (
     PersonOrOrg,
     PersonOrOrgIdentifierScheme,
     PersonOrOrgType,
+    RDMRecord,
     ResourceType,
     ResourceTypeId,
     Role,
     RoleId,
     UpdateDraftRecord,
+    ZenodoRecord,
 )
 from invenio_rest_api_client.types import File as FileContent
 from loguru import logger
@@ -210,6 +212,49 @@ def _to_creator(author: Person | SWARole) -> Creator:
     return creator
 
 
+def _to_contributor(contributor: Person | ContributorRole) -> Contributor:
+    role_id: RoleId = RoleId.OTHER
+
+    if isinstance(contributor, ContributorRole):
+        if contributor.additional_type:
+            role_id = __ROLES_MAPPING_.get(
+                contributor.additional_type,
+                RoleId.OTHER,
+            )
+
+        contributor = contributor.contributor
+
+    invenio_contributor = Contributor(
+        person_or_org=PersonOrOrg(
+            type=PersonOrOrgType.PERSONAL,
+            name=f"{contributor.family_name}, {contributor.given_name}",
+            given_name=contributor.given_name,
+            family_name=contributor.family_name,
+            identifiers=[_to_identifier(contributor.identifier)]
+            if contributor.identifier
+            else None,
+        ),
+        role=Role(id=role_id),
+        affiliations=[],
+    )
+
+    for affiliation in (
+        contributor.affiliation
+        if isinstance(contributor.affiliation, list)
+        else [contributor.affiliation]
+    ):
+        invenio_contributor.affiliations.append(
+            Affiliation(
+                id=_affiliation_identifier(affiliation.identifier)
+                if affiliation.identifier
+                else None,
+                name=affiliation.name,
+            )
+        )
+
+    return invenio_contributor
+
+
 def _finalize(
     draft_id: str,
     uploading_files: Iterable[Path],
@@ -307,27 +352,25 @@ def invenio_publish(
                 "'identifier' key not found in source document, reserving a DOI..."
             )
 
-            draft_record: Any | Created | None = create_a_draft_record(
+            draft_record: Any | RDMRecord | ZenodoRecord | None = create_a_draft_record(
                 client=invenio_rest_client, body=CreateADraftRecordBody()
             )
 
-            if draft_record and isinstance(draft_record, Created) and draft_record.id:
-                draft_id = draft_record.id
+            if draft_record and isinstance(draft_record, (RDMRecord, ZenodoRecord)):
+                draft_id = str(draft_record.id)
 
             logger.success(f"Successfully reserved a draft record with ID: {draft_id}")
 
-            doi: Any | Created | None = reserve_a_doi(
+            doi: Any | dict[str, Any] | None = reserve_a_doi(
                 draft_id=draft_id, client=invenio_rest_client
             )
 
-            if doi and isinstance(doi, Created):
-                context.metadata.identifier = doi.id
-                context.metadata.same_as = (
-                    doi.links.get("doi", None) if doi.links else None
-                )
+            if doi and isinstance(doi, dict):
+                context.metadata.identifier = doi["doi"]
+                context.metadata.same_as = doi["doi_url"]
 
                 logger.success(
-                    f"Successfully reserved a DOI with ID {doi} (URL: {context.metadata.identifier})"
+                    f"Successfully reserved a DOI with ID {context.metadata.identifier} (URL: {context.metadata.same_as})"
                 )
 
                 logger.warning(f"""Don't forget to update your source CWL Workflow with following metadata:
@@ -344,15 +387,16 @@ def invenio_publish(
                 f"Creating a new version for already existing Record {record_id}"
             )
 
-            version: Any | Created | None = create_a_new_version(
+            version: Any | RDMRecord | ZenodoRecord | None = create_a_new_version(
                 record_id=record_id, client=invenio_rest_client
             )
 
-            draft_id = (
-                version.id
-                if version and isinstance(version, Created) and version.id
-                else ""
-            )
+            if (
+                version
+                and isinstance(version, (RDMRecord, ZenodoRecord))
+                and version.id
+            ):
+                draft_id = str(version.id)
 
             logger.info(
                 f"New version {draft_id} for already existing Record {record_id} created!"
@@ -369,7 +413,7 @@ def invenio_publish(
             else None,
             resource_type=ResourceType(id=ResourceTypeId.WORKFLOW),
             title=context.metadata.name,
-            publication_date=date.fromtimestamp(time.time()),
+            publication_date=date.fromtimestamp(time.time()).isoformat(),
             publisher=context.metadata.publisher.name,
             description=context.metadata.description
             if context.metadata.description
@@ -384,7 +428,7 @@ def invenio_publish(
             ),
             contributors=list(
                 map(
-                    _to_creator,
+                    _to_contributor,
                     context.metadata.contributor
                     if isinstance(context.metadata.contributor, list)
                     else [context.metadata.contributor],
