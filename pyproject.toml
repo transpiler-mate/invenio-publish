@@ -42,6 +42,7 @@ classifiers = [
 ]
 dependencies = [
   "transpiler-mate-api @ git+https://github.com/sim13pods/transpiler-mate-api.git@main",
+  "invenio-rest-api-client==12.0.3",
   "loguru==0.7.3"
 ]
 
@@ -49,8 +50,17 @@ dependencies = [
 [tool.hatch.metadata]
 allow-direct-references = true
 
+[tool.mypy]
+strict = true
+
+[[tool.mypy.overrides]]
+module = [
+    "invenio_rest_api_client.*",
+]
+ignore_missing_imports = true
+
 [project.entry-points."transpiler_mate.plugins"]
-invenio-publish = "invenio-publish.plugin:invenio-publish"
+invenio-publish = "invenio_publish.plugin:invenio_publish"
 
 [project.urls]
 Homepage = "https://github.com/Transpiler-Mate/invenio-publish"
