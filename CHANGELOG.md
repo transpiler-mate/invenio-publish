@@ -25,6 +25,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Document InvenioRDM and Zenodo record creation, new-version updates,
+  attachments, client compatibility, and Transpiler-Mate CLI usage.
+
 ### Changed
 
 ### Deprecated

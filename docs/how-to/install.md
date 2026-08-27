@@ -14,12 +14,22 @@ See the License for the specific language governing permissions and
 limitations under the License.
 -->
 
-# Install
+# Install the plugin
 
 ## From PyPI
 
 ```bash
-pip install invenio-publish
+python -m pip install invenio-publish transpiler-mate-runtime
+```
+
+The two packages must be installed in the same Python environment. This
+package registers `invenio-publish` in the `transpiler_mate.plugins`
+entry-point group; the runtime supplies the `transpiler-mate` command.
+
+Verify plugin discovery:
+
+```console
+transpiler-mate invenio-publish --help
 ```
 
 ## From source
@@ -27,5 +37,5 @@ pip install invenio-publish
 ```bash
 git clone https://github.com/Transpiler-Mate/invenio-publish
 cd invenio-publish
-hatch env create
+python -m pip install . transpiler-mate-runtime
 ```

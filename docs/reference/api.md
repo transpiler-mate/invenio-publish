@@ -16,6 +16,29 @@ limitations under the License.
 
 # API reference
 
-::: invenio_publish
+## Plugin
 
-::: invenio_publish.cli
+The package registers the following Transpiler-Mate entry point:
+
+| Property | Value |
+| --- | --- |
+| Entry-point group | `transpiler_mate.plugins` |
+| Entry-point name | `invenio-publish` |
+| Entry-point object | `invenio_publish.plugin:invenio_publish` |
+
+The execution function receives a normalized `TranspilerContext` and an
+`InvenioPublisherOptions` instance. Normally the Transpiler-Mate runtime builds
+both and invokes the plugin.
+
+::: invenio_publish.plugin.invenio_publish
+
+## Options
+
+::: invenio_publish.plugin.InvenioPublisherOptions
+
+## Client compatibility
+
+The implementation uses `invenio-rest-api-client`'s authenticated client and
+its draft, record-version, DOI, file-upload, metadata-update, and publication
+operations. Responses may be either `RDMRecord` or `ZenodoRecord`, allowing the
+same plugin flow to work with compatible InvenioRDM deployments and Zenodo.

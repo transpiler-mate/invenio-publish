@@ -13,7 +13,7 @@
 # limitations under the License.
 
 site_name: Invenio Publisher Transpiler-Mate Plugin
-site_description: Invenio Publisher Transpiler-Mate Plugin.
+site_description: Publish CWL metadata to InvenioRDM and Zenodo with Transpiler-Mate.
 site_url: https://Transpiler-Mate.github.io/invenio-publish/
 repo_url: https://github.com/Transpiler-Mate/invenio-publish
 repo_name: invenio-publish
@@ -30,6 +30,7 @@ nav:
   - How-to guides:
       - Overview: how-to/index.md
       - Install: how-to/install.md
+      - Create or update a record: how-to/publish-record.md
       - Use the CLI: how-to/use-cli.md
   - Reference:
       - Overview: reference/index.md
@@ -39,7 +40,7 @@ nav:
       - Architecture: explanation/architecture.md
 
 theme:
-  name: material
+  name: readthedocs
   features:
     - navigation.sections
     - navigation.indexes

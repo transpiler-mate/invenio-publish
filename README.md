@@ -19,18 +19,36 @@ limitations under the License.
 [![PyPI - Version](https://img.shields.io/pypi/v/invenio-publish.svg)](https://pypi.org/project/invenio-publish)
 [![PyPI - Python Version](https://img.shields.io/pypi/pyversions/invenio-publish.svg)](https://pypi.org/project/invenio-publish)
 
-Invenio Publisher Transpiler-Mate Plugin.
+`invenio-publish` publishes the Schema.org metadata of a CWL document as an
+InvenioRDM record. It uses the dedicated `invenio-rest-api-client` for the
+record, draft, DOI, file-upload, versioning, and publication APIs. The same
+client and workflow are compatible with Zenodo.
 
-## Project conventions
+- Without `s:identifier`, the plugin creates a draft, reserves a DOI, uploads
+  any attachments, and publishes a new record.
+- With an existing DOI in `s:identifier`, the plugin creates and publishes a
+  new version of that record.
 
-This project is templated a Hatch-based Python package with:
+Install the plugin and the Transpiler-Mate runtime in the same environment:
 
-- Apache-2.0 license
-- Keep a Changelog-compatible `CHANGELOG.md`
-- Diátaxis documentation under `docs/`
-- top-level `mkdocs.yaml`
-- Taskfile integration with `Terradue/taskfile-utils`
-- GitHub Actions CI
+```console
+python -m pip install invenio-publish transpiler-mate-runtime
+```
+
+Then publish to an InvenioRDM instance (Zenodo Sandbox is shown here):
+
+```console
+export INVENIO_TOKEN="your-access-token"
+transpiler-mate invenio-publish \
+  --base-url https://sandbox.zenodo.org/ \
+  --auth-token "$INVENIO_TOKEN" \
+  --attach workflow.cwl \
+  workflow.cwl
+```
+
+This command publishes the draft; use a sandbox instance while testing. See
+the [documentation](https://Transpiler-Mate.github.io/invenio-publish/) for a
+complete metadata example and the create/update workflow.
 
 ## Documentation
 
@@ -55,6 +73,7 @@ Run the complete hook explicitly with:
 
 ```console
 task quality:pre-commit:run
+```
 
 ## License
 

@@ -21,4 +21,5 @@ How-to guides are task-oriented recipes. Each page should help an already-orient
 Available guides:
 
 - [Install](install.md)
+- [Create or update an InvenioRDM record](publish-record.md)
 - [Use the CLI](use-cli.md)
