@@ -19,6 +19,7 @@ from __future__ import annotations
 import hashlib
 import time
 from datetime import date
+from pathlib import Path  # noqa: TC003 - Pydantic resolves this annotation at runtime.
 from typing import TYPE_CHECKING, Annotated, Any
 from urllib.parse import urlparse
 
@@ -83,7 +84,6 @@ from transpiler_mate.api import (
 
 if TYPE_CHECKING:
     from collections.abc import Iterable, Mapping
-    from pathlib import Path
 
     from transpiler_mate.api import TranspilerContext
 
