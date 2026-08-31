@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://Transpiler-Mate.github.io/invenio-publish/how-to/publish-record/" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>Create or update a record - Invenio Publisher Transpiler-Mate Plugin</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../../assets/_mkdocstrings.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Create or update a record";
+        var mkdocs_page_input_path = "how-to/publish-record.md";
+        var mkdocs_page_url = "/invenio-publish/how-to/publish-record/";
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> Invenio Publisher Transpiler-Mate Plugin
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../..">Home</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Tutorials</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../tutorials/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../tutorials/first-steps/">First steps</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">How-to guides</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../install/">Install</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">Create or update a record</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#create-a-record">Create a record</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#update-a-record">Update a record</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#use-another-inveniordm-service">Use another InvenioRDM service</a>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../use-cli/">Use the CLI</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Reference</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../reference/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../reference/api/">API</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Explanation</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../explanation/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../explanation/architecture/">Architecture</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">Invenio Publisher Transpiler-Mate Plugin</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">How-to guides</li>
+      <li class="breadcrumb-item active">Create or update a record</li>
+    <li class="wy-breadcrumbs-aside">
+          <a href="https://github.com/Transpiler-Mate/invenio-publish/edit/main/docs/how-to/publish-record.md">Edit on invenio-publish</a>
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <!--
+Copyright 2026 Transpiler-Mate
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+-->
+
+<h1 id="create-or-update-an-inveniordm-record">Create or update an InvenioRDM record<a class="headerlink" href="#create-or-update-an-inveniordm-record" title="Permanent link">&para;</a></h1>
+<p>The plugin selects the operation from the CWL document's Schema.org
+<code>s:identifier</code> metadata.</p>
+<h2 id="create-a-record">Create a record<a class="headerlink" href="#create-a-record" title="Permanent link">&para;</a></h2>
+<p>Remove <code>s:identifier</code> (and any stale <code>s:sameAs</code>) from the document, then run:</p>
+<div class="highlight"><pre><span></span><code><span class="go">transpiler-mate invenio-publish \</span>
+<span class="go">  --base-url https://sandbox.zenodo.org/ \</span>
+<span class="go">  --auth-token "$INVENIO_TOKEN" \</span>
+<span class="go">  --attach workflow.cwl \</span>
+<span class="go">  workflow.cwl</span>
+</code></pre></div>
+<p>The Invenio client performs this sequence:</p>
+<ol>
+<li>Create a draft record and reserve its DOI.</li>
+<li>Map the CWL Schema.org metadata to InvenioRDM metadata.</li>
+<li>Upload every <code>--attach</code> file.</li>
+<li>Set public access and publish the draft.</li>
+</ol>
+<p>Copy the DOI and DOI URL printed in the log into the source document as
+<code>s:identifier</code> and <code>s:sameAs</code>. This preserves the record identity for the next
+release.</p>
+<h2 id="update-a-record">Update a record<a class="headerlink" href="#update-a-record" title="Permanent link">&para;</a></h2>
+<p>For a record previously created by this plugin, retain its DOI in the source:</p>
+<div class="highlight"><pre><span></span><code><span class="nt">s:identifier</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10.5281/zenodo.1234567</span>
+<span class="nt">s:sameAs</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://doi.org/10.5281/zenodo.1234567</span>
+<span class="nt">s:softwareVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1.1.0</span>
+</code></pre></div>
+<p>Run the same command. Presence of <code>s:identifier</code> makes the plugin create a new
+draft version, upload the selected files, replace that draft's mapped
+metadata, and publish it. "Update" therefore means <strong>publish a new version</strong>;
+the plugin does not modify a published version in place.</p>
+<p>The current implementation derives the Invenio record ID from the last
+dot-separated component of the DOI (<code>1234567</code> above). Use the DOI returned by
+the target server and do not substitute an arbitrary identifier.</p>
+<h2 id="use-another-inveniordm-service">Use another InvenioRDM service<a class="headerlink" href="#use-another-inveniordm-service" title="Permanent link">&para;</a></h2>
+<p>Replace the Zenodo Sandbox URL and token with those of the target deployment:</p>
+<div class="highlight"><pre><span></span><code><span class="go">transpiler-mate invenio-publish \</span>
+<span class="go">  --base-url https://invenio.example.org/ \</span>
+<span class="go">  --auth-token "$INVENIO_TOKEN" \</span>
+<span class="go">  workflow.cwl</span>
+</code></pre></div>
+<p>The service must expose compatible InvenioRDM record, draft, version, DOI, and
+file APIs. The token must carry the permissions required to create and publish
+records. Test the workflow against the service's sandbox or staging instance
+before using a production repository.</p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../install/" class="btn btn-neutral float-left" title="Install"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../use-cli/" class="btn btn-neutral float-right" title="Use the CLI">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+        <span>
+          <a href="https://github.com/Transpiler-Mate/invenio-publish" class="fa fa-code-fork" style="color: #fcfcfc"> invenio-publish</a>
+        </span>
+    
+    
+      <span><a href="../install/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../use-cli/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

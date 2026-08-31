@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://Transpiler-Mate.github.io/invenio-publish/tutorials/first-steps/" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>First steps - Invenio Publisher Transpiler-Mate Plugin</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../../assets/_mkdocstrings.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "First steps";
+        var mkdocs_page_input_path = "tutorials/first-steps.md";
+        var mkdocs_page_url = "/invenio-publish/tutorials/first-steps/";
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> Invenio Publisher Transpiler-Mate Plugin
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../..">Home</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Tutorials</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../">Overview</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">First steps</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#1-install-the-runtime-and-plugin">1. Install the runtime and plugin</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#2-create-a-metadata-bearing-cwl-file">2. Create a metadata-bearing CWL file</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#3-create-and-publish-the-record">3. Create and publish the record</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#4-publish-a-new-version">4. Publish a new version</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#next-steps">Next steps</a>
+    </li>
+    </ul>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">How-to guides</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../how-to/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../how-to/install/">Install</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../how-to/publish-record/">Create or update a record</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../how-to/use-cli/">Use the CLI</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Reference</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../reference/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../reference/api/">API</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Explanation</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../explanation/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../explanation/architecture/">Architecture</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">Invenio Publisher Transpiler-Mate Plugin</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Tutorials</li>
+      <li class="breadcrumb-item active">First steps</li>
+    <li class="wy-breadcrumbs-aside">
+          <a href="https://github.com/Transpiler-Mate/invenio-publish/edit/main/docs/tutorials/first-steps.md">Edit on invenio-publish</a>
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <!--
+Copyright 2026 Transpiler-Mate
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+-->
+
+<h1 id="publish-your-first-inveniordm-record">Publish your first InvenioRDM record<a class="headerlink" href="#publish-your-first-inveniordm-record" title="Permanent link">&para;</a></h1>
+<p>This tutorial publishes the metadata and source of a small CWL tool to
+Zenodo Sandbox. The same command works with another InvenioRDM deployment by
+changing its base URL and access token.</p>
+<h2 id="1-install-the-runtime-and-plugin">1. Install the runtime and plugin<a class="headerlink" href="#1-install-the-runtime-and-plugin" title="Permanent link">&para;</a></h2>
+<p>Create and activate a virtual environment, then install both packages:</p>
+<div class="highlight"><pre><span></span><code><span class="go">python -m venv .venv</span>
+<span class="go">source .venv/bin/activate</span>
+<span class="go">python -m pip install invenio-publish transpiler-mate-runtime</span>
+</code></pre></div>
+<p>Confirm that the runtime discovered the plugin:</p>
+<div class="highlight"><pre><span></span><code><span class="go">transpiler-mate invenio-publish --help</span>
+</code></pre></div>
+<h2 id="2-create-a-metadata-bearing-cwl-file">2. Create a metadata-bearing CWL file<a class="headerlink" href="#2-create-a-metadata-bearing-cwl-file" title="Permanent link">&para;</a></h2>
+<p>Save this document as <code>hello.cwl</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="nt">cwlVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v1.2</span>
+<span class="nt">$namespaces</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">s</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://schema.org/</span>
+<span class="nt">s:name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Hello tool</span>
+<span class="nt">s:description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Print a greeting.</span>
+<span class="nt">s:dateCreated</span><span class="p">:</span><span class="w"> </span><span class="s">"2026-08-27"</span>
+<span class="nt">s:license</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://spdx.org/licenses/Apache-2.0</span>
+<span class="nt">s:softwareVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1.0.0</span>
+<span class="nt">s:softwareHelp</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">s:name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Hello tool documentation</span>
+<span class="w">  </span><span class="nt">s:url</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://example.org/hello/help</span>
+<span class="nt">s:publisher</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">s:name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Example organization</span>
+<span class="nt">s:author</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">s:givenName</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Ada</span>
+<span class="w">  </span><span class="nt">s:familyName</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Lovelace</span>
+<span class="w">  </span><span class="nt">s:email</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ada@example.org</span>
+<span class="w">  </span><span class="nt">s:identifier</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://orcid.org/0000-0000-0000-0000</span>
+<span class="w">  </span><span class="nt">s:affiliation</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">s:name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Example organization</span>
+<span class="nt">$graph</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">hello</span>
+<span class="w">    </span><span class="nt">class</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CommandLineTool</span>
+<span class="w">    </span><span class="nt">baseCommand</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">echo</span>
+<span class="w">    </span><span class="nt">inputs</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">message</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">string</span>
+<span class="w">        </span><span class="nt">default</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Hello, world!</span>
+<span class="w">        </span><span class="nt">inputBinding</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">position</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1</span>
+<span class="w">    </span><span class="nt">outputs</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[]</span>
+</code></pre></div>
+<p>You can also <a href="../../examples/hello.cwl">download this example</a>.</p>
+<p>There is deliberately no <code>s:identifier</code>: that tells the plugin to create a
+record rather than a new version of an existing one. The Schema.org fields are
+document-level metadata alongside <code>$graph</code>; the runtime separates them from
+the CWL process and validates them before invoking the plugin.</p>
+<h2 id="3-create-and-publish-the-record">3. Create and publish the record<a class="headerlink" href="#3-create-and-publish-the-record" title="Permanent link">&para;</a></h2>
+<p>Create a Zenodo Sandbox token with deposit permissions, then run:</p>
+<div class="highlight"><pre><span></span><code><span class="go">export INVENIO_TOKEN="your-sandbox-access-token"</span>
+<span class="go">transpiler-mate invenio-publish \</span>
+<span class="go">  --base-url https://sandbox.zenodo.org/ \</span>
+<span class="go">  --auth-token "$INVENIO_TOKEN" \</span>
+<span class="go">  --attach hello.cwl \</span>
+<span class="go">  hello.cwl</span>
+</code></pre></div>
+<p>The plugin uses the Invenio REST API client to create a draft, reserve a DOI,
+upload the attached CWL document, set public record and file access, and publish
+the draft. The log reports the DOI and record URL.</p>
+<p>Add the reported values to the document before publishing another release:</p>
+<div class="highlight"><pre><span></span><code><span class="nt">s:identifier</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10.5281/zenodo.1234567</span>
+<span class="nt">s:sameAs</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://doi.org/10.5281/zenodo.1234567</span>
+</code></pre></div>
+<p>Replace the sample DOI with the one returned by the server. The plugin updates
+the in-memory metadata during the first run; it cannot rewrite the source CWL
+automatically.</p>
+<h2 id="4-publish-a-new-version">4. Publish a new version<a class="headerlink" href="#4-publish-a-new-version" title="Permanent link">&para;</a></h2>
+<p>Increment <code>s:softwareVersion</code>, keep the existing DOI in <code>s:identifier</code>, and
+run the same command again. The plugin extracts the record ID from the final
+dot-separated DOI component, requests a new version, updates that draft, and
+publishes it. The existing published version remains part of the record's
+version history.</p>
+<h2 id="next-steps">Next steps<a class="headerlink" href="#next-steps" title="Permanent link">&para;</a></h2>
+<ul>
+<li>See <a href="../../how-to/publish-record/">Create or update a record</a> for concise
+  production and attachment recipes.</li>
+<li>Review the <a href="../../how-to/use-cli/">command options</a>.</li>
+</ul>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../" class="btn btn-neutral float-left" title="Overview"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../../how-to/" class="btn btn-neutral float-right" title="Overview">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+        <span>
+          <a href="https://github.com/Transpiler-Mate/invenio-publish" class="fa fa-code-fork" style="color: #fcfcfc"> invenio-publish</a>
+        </span>
+    
+    
+      <span><a href="../" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../../how-to/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>
