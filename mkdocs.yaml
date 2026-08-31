@@ -16,7 +16,7 @@ site_name: Invenio Publisher Transpiler-Mate Plugin
 site_description: Publish CWL metadata to InvenioRDM and Zenodo with Transpiler-Mate.
 site_url: https://Transpiler-Mate.github.io/invenio-publish/
 repo_url: https://github.com/Transpiler-Mate/invenio-publish
-repo_name: invenio-publish
+repo_name: Transpiler-Mate/invenio-publish
 edit_uri: edit/main/docs/
 
 docs_dir: docs
