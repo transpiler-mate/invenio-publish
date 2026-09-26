@@ -1,4 +1,4 @@
-# Copyright 2026 Transpiler-Mate
+# Copyright 2026 Terradue
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -109,21 +109,11 @@ class InvenioPublisherOptions(BaseModel):
 
 
 __ROLES_MAPPING_: Mapping[AnyUrl, RoleId] = {
-    AnyUrl(
-        "https://credit.niso.org/contributor-roles/conceptualization/"
-    ): RoleId.PROJECTLEADER,
-    AnyUrl(
-        "https://credit.niso.org/contributor-roles/data-curation/"
-    ): RoleId.DATACURATOR,
-    AnyUrl(
-        "https://credit.niso.org/contributor-roles/formal-analysis/"
-    ): RoleId.RESEARCHER,
-    AnyUrl(
-        "https://credit.niso.org/contributor-roles/funding-acquisition/"
-    ): RoleId.SPONSOR,
-    AnyUrl(
-        "https://credit.niso.org/contributor-roles/investigation/"
-    ): RoleId.DATACOLLECTOR,
+    AnyUrl("https://credit.niso.org/contributor-roles/conceptualization/"): RoleId.PROJECTLEADER,
+    AnyUrl("https://credit.niso.org/contributor-roles/data-curation/"): RoleId.DATACURATOR,
+    AnyUrl("https://credit.niso.org/contributor-roles/formal-analysis/"): RoleId.RESEARCHER,
+    AnyUrl("https://credit.niso.org/contributor-roles/funding-acquisition/"): RoleId.SPONSOR,
+    AnyUrl("https://credit.niso.org/contributor-roles/investigation/"): RoleId.DATACOLLECTOR,
     AnyUrl("https://credit.niso.org/contributor-roles/methodology/"): RoleId.RESEARCHER,
     AnyUrl(
         "https://credit.niso.org/contributor-roles/project-administration/"
@@ -132,15 +122,9 @@ __ROLES_MAPPING_: Mapping[AnyUrl, RoleId] = {
     AnyUrl("https://credit.niso.org/contributor-roles/software/"): RoleId.RESEARCHER,
     AnyUrl("https://credit.niso.org/contributor-roles/supervision/"): RoleId.SUPERVISOR,
     AnyUrl("https://credit.niso.org/contributor-roles/validation/"): RoleId.RESEARCHER,
-    AnyUrl(
-        "https://credit.niso.org/contributor-roles/visualization/"
-    ): RoleId.RESEARCHER,
-    AnyUrl(
-        "https://credit.niso.org/contributor-roles/writing-original-draft/"
-    ): RoleId.RESEARCHER,
-    AnyUrl(
-        "https://credit.niso.org/contributor-roles/writing-review-editing/"
-    ): RoleId.EDITOR,
+    AnyUrl("https://credit.niso.org/contributor-roles/visualization/"): RoleId.RESEARCHER,
+    AnyUrl("https://credit.niso.org/contributor-roles/writing-original-draft/"): RoleId.RESEARCHER,
+    AnyUrl("https://credit.niso.org/contributor-roles/writing-review-editing/"): RoleId.EDITOR,
 }
 
 
@@ -196,9 +180,7 @@ def _to_creator(author: Person | SWARole) -> Creator:
     if isinstance(author, Person):
         creator.affiliations = []
         for affiliation in (
-            author.affiliation
-            if isinstance(author.affiliation, list)
-            else [author.affiliation]
+            author.affiliation if isinstance(author.affiliation, list) else [author.affiliation]
         ):
             creator.affiliations.append(
                 Affiliation(
@@ -262,9 +244,7 @@ def _finalize(
     invenio_metadata: Metadata,
 ) -> None:
     uploading_files_names = ", ".join([file.name for file in uploading_files])
-    logger.info(
-        f"Drafting file upload [{uploading_files_names}] to Record '{draft_id}'..."
-    )
+    logger.info(f"Drafting file upload [{uploading_files_names}] to Record '{draft_id}'...")
 
     step_1_start_draft_file_uploads(
         draft_id=draft_id,
@@ -279,9 +259,7 @@ def _finalize(
         ],
     )
 
-    logger.success(
-        f"File upload {uploading_files_names} drafted to Record '{draft_id}'"
-    )
+    logger.success(f"File upload {uploading_files_names} drafted to Record '{draft_id}'")
 
     for file in uploading_files:
         logger.info(f"Uploading file content '{file.name})' to Record '{draft_id}'...")
@@ -332,9 +310,7 @@ def _finalize(
     description="Invenio Publisher Transpiler-Mate Plugin.",
     options_model=InvenioPublisherOptions,
 )
-def invenio_publish(
-    context: TranspilerContext, options: InvenioPublisherOptions
-) -> None:
+def invenio_publish(context: TranspilerContext, options: InvenioPublisherOptions) -> None:
     """Invenio Publisher Transpiler-Mate Plugin."""
     with InvenioClient(
         base_url=str(options.base_url), token=options.auth_token
@@ -348,9 +324,7 @@ def invenio_publish(
         draft_id: str = ""
 
         if not context.metadata.identifier:
-            logger.warning(
-                "'identifier' key not found in source document, reserving a DOI..."
-            )
+            logger.warning("'identifier' key not found in source document, reserving a DOI...")
 
             draft_record: Any | RDMRecord | ZenodoRecord | None = create_a_draft_record(
                 client=invenio_rest_client, body=CreateADraftRecordBody()
@@ -383,24 +357,16 @@ def invenio_publish(
 
             record_id: str = str(context.metadata.identifier).split(".")[-1]
 
-            logger.info(
-                f"Creating a new version for already existing Record {record_id}"
-            )
+            logger.info(f"Creating a new version for already existing Record {record_id}")
 
             version: Any | RDMRecord | ZenodoRecord | None = create_a_new_version(
                 record_id=record_id, client=invenio_rest_client
             )
 
-            if (
-                version
-                and isinstance(version, (RDMRecord, ZenodoRecord))
-                and version.id
-            ):
+            if version and isinstance(version, (RDMRecord, ZenodoRecord)) and version.id:
                 draft_id = str(version.id)
 
-            logger.info(
-                f"New version {draft_id} for already existing Record {record_id} created!"
-            )
+            logger.info(f"New version {draft_id} for already existing Record {record_id} created!")
 
         invenio_metadata: Metadata = Metadata(
             identifiers=[
@@ -415,9 +381,7 @@ def invenio_publish(
             title=context.metadata.name,
             publication_date=date.fromtimestamp(time.time()).isoformat(),
             publisher=context.metadata.publisher.name,
-            description=context.metadata.description
-            if context.metadata.description
-            else None,
+            description=context.metadata.description if context.metadata.description else None,
             creators=list(
                 map(
                     _to_creator,

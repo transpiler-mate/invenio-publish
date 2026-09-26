@@ -1,4 +1,4 @@
-# Copyright 2026 Transpiler-Mate
+# Copyright 2026 Terradue
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -49,9 +49,7 @@ def test_contributor_role_is_mapped_from_credit_role() -> None:
     contributor = _to_contributor(
         ContributorRole(
             role_name="Data curator",
-            additional_type=AnyUrl(
-                "https://credit.niso.org/contributor-roles/data-curation/"
-            ),
+            additional_type=AnyUrl("https://credit.niso.org/contributor-roles/data-curation/"),
             contributor=_person(),
         )
     )

@@ -1,5 +1,5 @@
 <!--
-Copyright 2026 Transpiler-Mate
+Copyright 2026 Terradue
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -18,6 +18,8 @@ limitations under the License.
 
 [![PyPI - Version](https://img.shields.io/pypi/v/invenio-publish.svg)](https://pypi.org/project/invenio-publish)
 [![PyPI - Python Version](https://img.shields.io/pypi/pyversions/invenio-publish.svg)](https://pypi.org/project/invenio-publish)
+[![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/transpiler-mate/invenio-publish/package.yaml?branch=develop&event=push&label=build&logo=githubactions)](https://github.com/transpiler-mate/invenio-publish/actions/workflows/package.yaml?query=branch%3Adevelop)
+[![Code coverage](https://img.shields.io/codecov/c/github/transpiler-mate/invenio-publish/develop?logo=codecov)](https://app.codecov.io/gh/transpiler-mate/invenio-publish/tree/develop)
 
 `invenio-publish` publishes the Schema.org metadata of a CWL document as an
 InvenioRDM record. It uses the dedicated `invenio-rest-api-client` for the
